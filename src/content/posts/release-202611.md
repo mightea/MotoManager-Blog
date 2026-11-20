@@ -19,9 +19,6 @@ covers web **2026.11.0 – 2026.11.5**, API **0.24.2 – 0.29.0** and iOS **0.17
 > for files; web 2026.11.0 loads documents with a Bearer header instead. An older web app
 > against a newer API cannot open documents.
 
-> **The iOS app no longer ships with a prefilled server.** Enter your own server address on
-> the login screen, or scan the connect QR code from the web app's settings (see below).
-
 ## Highlights
 
 ### Statistics with total cost of ownership
@@ -191,7 +188,6 @@ the API section below.
 
 ### 0.21.0 – November 10
 
-- Builds ship without a prefilled server URL.
 - Updated App Store listing and screenshots, including iPhone Duo.
 
 [All changes](https://github.com/mightea/MotoManager-App/compare/v0.20.0...v0.21.0)
