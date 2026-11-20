@@ -24,6 +24,13 @@ to GitHub Pages by `.github/workflows/deploy.yml` on every push to `main`.
 - The raw material is each repo's release-please `CHANGELOG.md`. Rewrite the
   lines for users; leave out `ci`, `docs`, `chore` and `test`.
 
+## Writing with Claude
+
+The `motomanager-release-post` skill in `.claude/skills/` holds the full
+workflow and audience rules; `scripts/collect_changelog.py YYYY-MM` collects a
+month's web and iOS changelog entries. It is symlinked into `~/.claude/skills/`
+so it works from any of the MotoManager repos.
+
 ## Local
 
 ```sh
