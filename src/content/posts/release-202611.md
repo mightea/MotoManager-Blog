@@ -125,7 +125,7 @@ replayed, and documents open without your session appearing in the link.
 
 ### 2026.11.0 – November 4
 
-- Fix: load documents with a Bearer header instead of `?token=` URLs.
+- Fix: documents open without your session appearing in the link.
 
 [All changes](https://github.com/mightea/MotoManager/compare/2026.10.2...2026.11.0)
 

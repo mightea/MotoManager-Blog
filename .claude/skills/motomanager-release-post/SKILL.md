@@ -32,6 +32,26 @@ interval or look for a part. So leave out, or reword so it doesn't show:
   updates; …") so the version list stays complete.
 - **Changes reverted in the same period** (e.g. a layout added and removed again).
 
+**Grey areas — describe what the rider sees, not how it's configured.** Some changes
+start on the server or admin side but are visible to riders. Write about the visible part
+only:
+
+- An update prompt in the app is rider-facing ("the reminder stays on screen until you
+  update"); the admin setting that triggers it is not.
+- A fix for something that broke because of a server matter is written as what works
+  again: iOS 0.21.1's changelog line "restore the server address for sessions that lost it"
+  became "sessions that lost their connection settings in the previous update work again."
+- Developer phrasing such as "load documents with a Bearer header instead of `?token=`
+  URLs" becomes "documents open without your session appearing in the link."
+
+**Write each month as it was.** If something changed later (the update prompt opened
+TestFlight in October and the App Store from November), describe the month's version.
+Later changes belong in later posts.
+
+**Security section** only for protection a rider benefits from, such as sign-in, sessions
+or their documents, in plain words. Patched dependencies and build-tool vulnerabilities
+are covered by "Maintenance and security updates; nothing visible changes."
+
 Language is English. Keep the app's German UI names where they are what the rider sees,
 in italics: *Tanken*, *Technik*, *Wartung*, *Teile*, *KI-Zugriff*, *Voll getankt*, *Alle*.
 
@@ -39,8 +59,10 @@ in italics: *Tanken*, *Technik*, *Wartung*, *Teile*, *KI-Zugriff*, *Voll getankt
 
 ### 1. Get fresh changelogs and collect the month
 
-The raw material is each repo's release-please `CHANGELOG.md`. Local clones can lag
-behind GitHub, so pull first (they live next to the blog in `MotoManager-Project/`):
+The raw material is each repo's release-please `CHANGELOG.md`. The clones sit next to
+the blog in `MotoManager-Project/`: `MotoManager` (web app, GitHub `mightea/MotoManager`)
+and `MotoManagerApp` (iOS app, GitHub `mightea/MotoManager-App`). Local clones can lag
+behind GitHub, so pull first:
 
 ```sh
 cd /Users/tobias/Developer/Private/MotoManager-Project
@@ -48,26 +70,39 @@ git -C MotoManager pull --ff-only && git -C MotoManagerApp pull --ff-only
 python3 MotoManager-Blog/.claude/skills/motomanager-release-post/scripts/collect_changelog.py 2026-12
 ```
 
-The script prints every release of the month per component, newest first, as
-`### <version> – <Month day>` with its compare URL, entries prefixed `Fix:` where
-appropriate, and the chore/CI/docs/test lines it skipped. If a pull fails (e.g. a dirty
+The script finds the clones two folders above the blog repo it lives in. If the blog is
+somewhere else (a copy or a worktree), pass `--root <folder with the clones>`.
+
+It prints every release of the month per component, newest first, as
+`### <version> – <Month day>` with its compare URL. Each entry ends with its short commit
+hash, and fixes are prefixed `Fix:`. The chore/CI/docs/test lines it skipped are listed
+separately. If a pull fails (e.g. a dirty
 working tree), don't touch the repo — read the changelog from GitHub instead
 (`gh api repos/mightea/MotoManager/contents/CHANGELOG.md --jq .content | base64 -d`).
 
-To understand what a terse entry means for the rider, look at the commit
-(`git -C MotoManager show --stat <hash>`; hashes are in CHANGELOG.md). That's how you
-find out e.g. whether a "docs" change is actually text shown in the app.
+To understand what a terse entry means for the rider, read the commit
+(`git -C MotoManager show <hash>`): the message body and the files it touches. That's how
+you find out e.g. whether a "docs" change is actually text shown in the app. Details from
+commit bodies and code are fair to use. Details you would have to guess are not.
 
 ### 2. New month or update?
 
 Posts live at `src/content/posts/release-YYYYMM.md`. If the month's post exists, this is
-an **update**: add the new `### <version> – <date>` sections at the top of the
-component's section, bump `versions` and `updated` in the frontmatter, and touch the
-highlights only if the new release deserves one. Otherwise write a new post.
+an **update**. Read that post, then:
+
+- Add the new `### <version> – <date>` sections at the top of each component's section.
+- Bump `versions` and `updated` in the frontmatter.
+- Update the version range in the intro's "This post covers …" sentence. It's easy to miss.
+- Add a highlight only if the release has a rider-facing feature. Place it by importance,
+  not at the end. If it's one of the month's headline features, add it to the
+  `description` as well. Change the `title` only if the new feature beats one already
+  named there.
+
+Otherwise write a new post.
 
 ### 3. Write the post
 
-Read the newest existing post first and match its voice. The shape:
+For a new post, read the newest existing post first and match its voice. The shape:
 
 ```markdown
 ---
@@ -108,6 +143,9 @@ when it isn't both. Optional screenshot below the paragraph.>
 ```
 
 Writing guidance:
+
+- **Title**: "<Month YYYY>: " followed by two or three features, at most about 70
+  characters in total. It shows up on index cards and in feeds.
 
 - **Highlights**: 3–8, ordered by how much they matter to riders. Group related entries
   across both apps into one highlight (e.g. "Partial fill-ups" covered web, iOS and
@@ -150,10 +188,11 @@ period-accurate image, go without and say so in your reply.
 ```sh
 cd /Users/tobias/Developer/Private/MotoManager-Project/MotoManager-Blog
 pnpm install && pnpm build
-grep -n -i 'api\b\|admin\|server\|bmwbike\|prefill' src/content/posts/release-YYYYMM.md   # audience check
+grep -n -i 'api\b\|admin\|server\|bmwbike\|prefill\|token\|header' src/content/posts/release-YYYYMM.md   # audience check
 ```
 
-Review the grep hits (some are fine, e.g. "the login prefilled" via QR code). Preview with
+Review the grep hits. Some are fine, for example "the login prefilled" via the QR code, or
+the *KI-Zugriff* access tokens. Preview with
 `pnpm preview` and look at the post in the browser — light and dark, and phone width.
 
 Commit with a Conventional Commit message (e.g. `docs: add the December 2026 release

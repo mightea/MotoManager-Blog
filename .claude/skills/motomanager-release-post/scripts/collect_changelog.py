@@ -7,8 +7,7 @@ Usage:
 
 Prints, per component, every release in that month (newest first) with its
 date, the GitHub compare URL for the "All changes" link, and its entries
-grouped by section. Commit hashes and links are stripped so the output is
-easy to rewrite. Sections that never belong in a rider-facing post
+(each with its short commit hash, for `git -C <repo> show <hash>`). Sections that never belong in a rider-facing post
 (chores, CI, docs, tests, refactors, styles) are listed separately under
 "skipped" so you can still tell when a release had nothing visible.
 
@@ -38,9 +37,10 @@ ENTRY = re.compile(r"^\* (?P<text>.+)")
 
 
 def clean(text: str) -> str:
-    text = re.sub(r" \(\[[0-9a-f]{7,}\]\([^)]*\)\)", "", text)  # (hash link)
+    # "(abc1234)" stays as a short hash so you can `git show` the commit.
+    text = re.sub(r" \(\[([0-9a-f]{7,})\]\([^)]*\)\)", r" (\1)", text)
     text = re.sub(r", closes \[#\d+\]\([^)]*\)", "", text)        # closes #N
-    text = re.sub(r"\*\*([^*]+):\*\* ", r"[\1] ", text)            # **scope:**
+    text = re.sub(r"\*\*([^*]+):\*\* ", "", text)                  # drop **scope:**
     return text.strip()
 
 
@@ -63,7 +63,8 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("month", help="YYYY-MM")
     ap.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[5],
-                    help="MotoManager-Project folder (default: inferred from this script's location)")
+                    help="folder that holds the MotoManager and MotoManagerApp clones "
+                         "(default: two levels above the blog repo this script lives in)")
     args = ap.parse_args()
 
     if not re.fullmatch(r"\d{4}-\d{2}", args.month):
