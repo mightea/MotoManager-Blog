@@ -64,7 +64,7 @@ prefilled.
 ### A new look
 
 Garage, bike pages, parts, storage locations, documents, expenses, statistics, the map,
-settings and the admin area were all realigned with the design proposals. On iOS the iPad,
+settings were all realigned with the design proposals. On iOS the iPad,
 iPhone and Duo layouts were reworked, the *Wartung* tab became a single filtered timeline,
 and the tab bar collapses to the active tab while you scroll.
 
@@ -85,9 +85,7 @@ replayed, and documents open without your session appearing in the link.
 
 ### 2026.11.4 – November 9
 
-- Admin area flags outdated apps; server stats show system health.
 - Bike page leads with its key numbers and states each fact once.
-- Change the server from the login screen.
 - Flag parts as low only when used in more than three repairs.
 - Garage shows what is due.
 - Import torque values from the model catalog and share your own values there; the catalog shows how many shared values each model has.
@@ -96,9 +94,9 @@ replayed, and documents open without your session appearing in the link.
 - Service intervals show their progress.
 - Settings get a section index and compact location lists.
 - Show and set a type for documents.
-- Show when currency rates were last updated, and refresh them from the admin page.
+- Show when currency rates were last updated.
 - Larger labels and text-safe status colours; documents, expenses, stats and map get page titles and summaries; everything realigned with the design proposals.
-- Fix: value foreign-currency stock with the server's rates.
+- Fix: parts in stock bought in a foreign currency are valued with current exchange rates.
 - Fix: buttons, numbers and seasons no longer wrap mid-label.
 
 [All changes](https://github.com/mightea/MotoManager/compare/2026.11.3...2026.11.4)
@@ -136,20 +134,20 @@ replayed, and documents open without your session appearing in the link.
 
 ### 0.21.1 – November 11
 
-- Fix: restore the server address for sessions that lost it in the update.
+- Fix: sessions that lost their connection settings in the previous update work again.
 
 [All changes](https://github.com/mightea/MotoManager-App/compare/v0.21.0...v0.21.1)
 
 ### 0.21.0 – November 10
 
-- Updated App Store listing and screenshots, including iPhone Duo.
+- Maintenance updates; nothing visible changes.
 
 [All changes](https://github.com/mightea/MotoManager-App/compare/v0.20.0...v0.21.0)
 
 ### 0.20.0 – November 9
 
 - Document types with a library filter and upload/edit pickers.
-- Sync part–defect links with the server and show them on parts and defects.
+- Part–defect links sync across your devices and show on parts and defects.
 - Only parts used in more than three repairs count as low in stock.
 - The shopping list is informational instead of booking stock; hand-added entries disappear once their stock rises.
 
@@ -176,7 +174,7 @@ replayed, and documents open without your session appearing in the link.
 
 ### 0.17.0 – November 7
 
-- Edit the motorcycle, open labels via universal links, server intervals with reminders, and an issue lifecycle.
+- Edit the motorcycle, open labels via universal links, service intervals with reminders, and an issue lifecycle.
 - New iPad, iPhone and Duo layouts; redesigned documents and parts tab.
 - The *Wartung* tab is one filtered timeline.
 - The focused fuel field stays above the keyboard.
