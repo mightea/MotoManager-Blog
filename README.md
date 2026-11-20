@@ -12,6 +12,9 @@ to GitHub Pages by `.github/workflows/deploy.yml` on every push to `main`.
   optional `draft: true`.
 - Structure: Upgrade notes → Highlights (hand-written) → Security → one `##`
   section per component with a `### <version> – <Month day>` section per release.
+- The audience is the rider using the app: Highlights describe what changes
+  for them in the web and iOS apps — no endpoints, versions or API details
+  (those belong in the API section).
 - **Patch release**: add a `### <version> – <date>` section at the top of the
   component's section, bump `versions` and `updated`.
 - The raw material is each repo's release-please `CHANGELOG.md`. Rewrite the

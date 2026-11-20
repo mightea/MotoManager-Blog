@@ -27,8 +27,7 @@ covers web **2026.11.0 – 2026.11.5**, API **0.24.2 – 0.29.0** and iOS **0.17
 ### Statistics with total cost of ownership
 
 The statistics page was rebuilt from scratch: charts, a cost breakdown and the total cost of
-ownership of each motorcycle, backed by a new `GET /api/stats/fleet` endpoint. You can pick
-the last 3, 5 or 10 years. On the iPhone, statistics are linked from the *Tanken* and
+ownership of each motorcycle. You can pick the last 3, 5 or 10 years. On the iPhone, statistics are linked from the *Tanken* and
 *Wartung* tabs; on iPad they get their own tab.
 
 ### Partial fill-ups
@@ -41,7 +40,7 @@ iOS was redesigned around this — consumption first, compared with the fills be
 
 Swapped the instrument cluster? MotoManager now keeps the instrument reading and the total
 distance apart, so the mileage stays correct across the replacement. The odometer reading
-is also recorded when you sell a motorcycle. (Web and API; the iOS app follows in its next
+is also recorded when you sell a motorcycle. (Web app; the iOS app follows in its next
 release.)
 
 ### Parts and defects, linked
@@ -75,10 +74,9 @@ and the tab bar collapses to the active tab while you scroll.
 
 ## Security
 
-API 0.24.2 blocks uploads of active content, stores session tokens hashed and drops
-`?token=` file authentication. API 0.26.0 makes passkey challenges single-use, enforces
-their expiry and keeps the passkey credential up to date after each login. Tokio was
-updated for GHSA-5wjr-9356-4wc8.
+Signing in and opening documents are better protected: passkey logins can no longer be
+replayed, and documents open without your session appearing in the link. Details are in
+the API section below.
 
 ## Web app
 
