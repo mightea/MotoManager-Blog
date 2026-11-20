@@ -27,11 +27,15 @@ The statistics page was rebuilt from scratch: charts, a cost breakdown and the t
 ownership of each motorcycle. You can pick the last 3, 5 or 10 years. On the iPhone, statistics are linked from the *Tanken* and
 *Wartung* tabs; on iPad they get their own tab.
 
+![Statistics on the iPhone: total cost for the year, cost per kilometre and a monthly cost chart](../../assets/2026-11/ios-statistics.jpg)
+
 ### Partial fill-ups
 
 You can now record whether a fill-up actually filled the tank. Consumption is measured from
 full tank to full tank, so a quick top-up no longer skews the figures. The fuel detail on
 iOS was redesigned around this — consumption first, compared with the fills before and after.
+
+![The redesigned fuel detail on the iPhone, with consumption first and the "Voll getankt" marker](../../assets/2026-11/ios-fuel-detail.jpg)
 
 ### Replaced odometers
 
@@ -46,6 +50,8 @@ Spare parts can be linked to open defects, and the link shows on both sides — 
 and in the iOS app. Stock warnings got quieter: a part only counts as low when it was used
 in more than three repairs. On iOS, the parts tab now plans ahead with *needed soon*, a
 shopping list and scan-to-book.
+
+![The parts tab on the iPhone: a part needed for an open defect, the shopping list and parts low in stock](../../assets/2026-11/ios-parts.jpg)
 
 ### Torque values from the model catalog
 
@@ -68,6 +74,8 @@ Garage, bike pages, parts, storage locations, documents, expenses, statistics, t
 settings and the admin area were all realigned with the design proposals. On iOS the iPad,
 iPhone and Duo layouts were reworked, the *Wartung* tab became a single filtered timeline,
 and the tab bar collapses to the active tab while you scroll.
+
+![The Wartung tab on the iPad: the maintenance timeline beside open defects and service intervals](../../assets/2026-11/ipad-maintenance.jpg)
 
 ## Security
 

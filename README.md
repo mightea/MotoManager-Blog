@@ -15,6 +15,11 @@ to GitHub Pages by `.github/workflows/deploy.yml` on every push to `main`.
 - The audience is the rider using the app: Highlights describe what changes
   for them in the web and iOS apps — no endpoints, versions or API details
   (those belong in the API section).
+- **Screenshots** go in `src/assets/YYYY-MM/` and are referenced relatively
+  from the post (`![alt](../../assets/2026-11/x.jpg)`). Resize them first,
+  e.g. `sips -s format jpeg -s formatOptions 80 --resampleWidth 640 in.png --out out.jpg`
+  (iPhone) or `--resampleWidth 1400` (iPad). The App Store set in
+  `MotoManagerApp/appstore/screenshots/de-DE/` is a good source.
 - **Patch release**: add a `### <version> – <date>` section at the top of the
   component's section, bump `versions` and `updated`.
 - The raw material is each repo's release-please `CHANGELOG.md`. Rewrite the
