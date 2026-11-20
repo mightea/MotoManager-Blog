@@ -43,5 +43,7 @@ Slate/Navy surfaces, Anton / IBM Plex Sans / JetBrains Mono, `.label-tag`,
 
 GitHub Pages (Settings → Pages → Source: GitHub Actions). The workflow passes
 the Pages origin and base path to the build (`SITE_URL`, `BASE_PATH`), so it
-works both at `https://<user>.github.io/<repo>/` and on a custom domain. For a
-custom domain, set it in Settings → Pages and add `public/CNAME`.
+works both at `https://<user>.github.io/<repo>/` and on a custom domain.
+
+Live at **https://blog.motomanager.org** — DNS: CNAME `blog` → `mightea.github.io`;
+the domain is set in Settings → Pages and in `public/CNAME`, with HTTPS enforced.
