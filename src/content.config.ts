@@ -13,7 +13,6 @@ const posts = defineCollection({
     // Newest version of each component covered by the post.
     versions: z.object({
       web: z.string().optional(),
-      api: z.string().optional(),
       ios: z.string().optional(),
     }),
     draft: z.boolean().default(false),

@@ -5,19 +5,12 @@ date: 2026-11-04
 updated: 2026-11-15
 versions:
   web: "2026.11.5"
-  api: "0.29.0"
   ios: "0.21.1"
 ---
 
-November was a big month for MotoManager. The web app, the API and the iOS app all moved
-to the new design proposals, and several features landed on all three at once. This post
-covers web **2026.11.0 – 2026.11.5**, API **0.24.2 – 0.29.0** and iOS **0.17.0 – 0.21.1**.
-
-## Upgrade notes
-
-> **Update the web app and the API together.** API 0.24.2 no longer accepts `?token=` URLs
-> for files; web 2026.11.0 loads documents with a Bearer header instead. An older web app
-> against a newer API cannot open documents.
+November was a big month for MotoManager. The web app and the iOS app both got a new look,
+and most new features landed in both at once. This post covers web app
+**2026.11.0 – 2026.11.5** and iOS app **0.17.0 – 0.21.1**.
 
 ## Highlights
 
@@ -80,8 +73,7 @@ and the tab bar collapses to the active tab while you scroll.
 ## Security
 
 Signing in and opening documents are better protected: passkey logins can no longer be
-replayed, and documents open without your session appearing in the link. Details are in
-the API section below.
+replayed, and documents open without your session appearing in the link.
 
 ## Web app
 
@@ -139,52 +131,6 @@ the API section below.
 
 [All changes](https://github.com/mightea/MotoManager/compare/2026.10.2...2026.11.0)
 
-## API
-
-### 0.29.0 – November 15
-
-- Support replaced odometers with per-motorcycle odometer changes.
-
-[All changes](https://github.com/mightea/MotoManager-Api/compare/v0.28.0...v0.29.0)
-
-### 0.28.0 – November 9
-
-- Add a type to documents.
-- Link spare parts to open defects, and list all of a user's part–defect links in one request.
-- Share torque values into the model catalog and import them from there.
-- Track when currency rates were updated, and refresh them daily.
-
-[All changes](https://github.com/mightea/MotoManager-Api/compare/v0.27.0...v0.28.0)
-
-### 0.27.0 – November 8
-
-- Store whether a fuel record filled the tank, and measure consumption full to full.
-
-[All changes](https://github.com/mightea/MotoManager-Api/compare/v0.26.0...v0.27.0)
-
-### 0.26.0 – November 7
-
-- Record the odometer reading at the sale of a motorcycle.
-- Fix: passkey challenges are single-use and expire.
-- Fix: persist the updated passkey credential after each login.
-- Fix: trim whitespace around the login identifier.
-
-[All changes](https://github.com/mightea/MotoManager-Api/compare/v0.25.0...v0.26.0)
-
-### 0.25.0 – November 4
-
-- Add `GET /api/stats/fleet` with cost breakdown and total cost of ownership.
-- Fix: correct CHF amounts of foreign-currency fuel imported from Road Trip.
-
-[All changes](https://github.com/mightea/MotoManager-Api/compare/v0.24.2...v0.25.0)
-
-### 0.24.2 – November 4
-
-- Fix: block active-content uploads, hash session tokens, drop `?token=` file auth.
-- Fix: bump tokio to 1.54.1 (GHSA-5wjr-9356-4wc8).
-- Fix: re-derive fuel consumption across the whole fill chain.
-
-[All changes](https://github.com/mightea/MotoManager-Api/compare/v0.24.1...v0.24.2)
 
 ## iOS app
 

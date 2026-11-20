@@ -6,7 +6,7 @@ export async function GET(context: APIContext) {
   const posts = await getPosts();
   return rss({
     title: "MotoManager Releases",
-    description: "Release notes for the MotoManager web app, API and iOS app.",
+    description: "Release notes for the MotoManager web app and iOS app.",
     site: new URL(import.meta.env.BASE_URL, context.site!).href,
     items: posts.map((post) => ({
       title: post.data.title,

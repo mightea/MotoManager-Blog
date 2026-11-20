@@ -19,18 +19,20 @@ const toc = headings.filter((h) => h.depth <= 3);
 
 <Base title={post.data.title} description={post.data.description}>
   <article class="post">
-    <header>
-      <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
-      {post.data.updated && <span class="updated"> · updated {formatDate(post.data.updated)}</span>}
-      <h1>{post.data.title}</h1>
+    <header class="post-header">
+      <span class="label-tag">
+        <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+        {post.data.updated && <span>· updated {formatDate(post.data.updated)}</span>}
+      </span>
+      <h1 class="font-display">{post.data.title}</h1>
       <p class="lede">{post.data.description}</p>
       <Versions versions={post.data.versions} />
     </header>
 
     {
       toc.length > 0 && (
-        <nav class="toc" aria-label="Contents">
-          <strong>Contents</strong>
+        <nav class="card toc" aria-label="Contents">
+          <span class="label-tag">Contents</span>
           <ul>
             {toc.map((h) => (
               <li class={`d${h.depth}`}>

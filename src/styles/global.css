@@ -1,105 +1,326 @@
+/* Mirrors the MotoManager web app (MotoManager/app/app.css):
+   "Dakar" palette — Ultramarine · Plum · Sand · Vermillion, always four bands —
+   on Slate (light) / Navy (dark) surfaces, with Anton for display headlines,
+   IBM Plex Sans for body copy and JetBrains Mono for labels and numbers. */
+
 :root {
-  --bg: #fbfaf8;
+  /* Dakar palette */
+  --ultramarine: #1e5bff;
+  --plum: #5b1d7a;
+  --sand: #e8a341;
+  --sand-soft: #f2c277;
+  --sand-ink: #4a2f10;
+  --vermillion: #ff4124;
+
+  /* Light theme (daisyUI "motomanager") */
+  --primary: var(--ultramarine);
+  --bg: #f8fafc;          /* slate-50 */
   --surface: #ffffff;
-  --text: #1c1b1a;
-  --muted: #6b6762;
-  --border: #e7e3de;
-  --accent: #d9480f;
-  --accent-soft: #fff0e6;
-  --code-bg: #f3f1ee;
-  --radius: 12px;
-  --font: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --border: #e2e8f0;      /* slate-200 */
+  --text: #0f172a;        /* slate-900 */
+  --muted: #64748b;       /* slate-500 */
+  --code-bg: #f1f5f9;
+
+  --radius-box: 1rem;
+  --radius-field: 0.75rem;
+
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-display: "Anton", "IBM Plex Sans Condensed", "Arial Narrow", sans-serif;
+
   color-scheme: light dark;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #141312;
-    --surface: #1c1b19;
-    --text: #ecebe8;
-    --muted: #9c978f;
-    --border: #2e2c29;
-    --accent: #ff8a4c;
-    --accent-soft: #2b1d14;
-    --code-bg: #24221f;
+    /* Dark theme (daisyUI "motomanager-dark", navy palette) */
+    --primary: #6485ff;   /* lifted ultramarine */
+    --bg: #0a0711;        /* navy-950 */
+    --surface: #1b1627;   /* navy-800 */
+    --border: #262134;    /* navy-700 */
+    --text: #f8fafc;
+    --muted: #8c869e;     /* navy-300 */
+    --code-bg: #262134;
   }
 }
 
 * { box-sizing: border-box; }
 
+html { scroll-behavior: smooth; overflow-x: clip; }
+
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font: 17px/1.65 var(--font);
+  font: 400 17px/1.65 var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 }
 
-a { color: var(--accent); }
+::selection { background-color: rgba(30, 91, 255, 0.25); }
 
-.wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+a { color: var(--primary); text-underline-offset: 2px; }
 
-.site-header { border-bottom: 1px solid var(--border); background: var(--surface); }
-.site-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
-.brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 650; }
-.brand em { font-style: normal; color: var(--muted); font-weight: 500; }
-.site-header nav a { color: var(--muted); text-decoration: none; font-size: 15px; }
+.wrap { max-width: 800px; margin: 0 auto; padding: 0 16px; }
 
-main.wrap { padding-top: 40px; padding-bottom: 64px; }
+/* ---------- Design motifs (from the web app) ---------- */
 
-.site-footer { border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; padding: 24px 0 40px; }
-
-h1, h2, h3 { line-height: 1.25; letter-spacing: -0.01em; }
-h1 { font-size: clamp(28px, 5vw, 38px); margin: 0.2em 0 0.4em; }
-
-time, .updated { color: var(--muted); font-size: 14px; }
-
-/* Index */
-.intro p { color: var(--muted); margin-top: 0; }
-.post-list { list-style: none; padding: 0; margin: 32px 0 0; display: grid; gap: 16px; }
-.post-list a {
-  display: block; padding: 20px 22px; border: 1px solid var(--border); border-radius: var(--radius);
-  background: var(--surface); color: inherit; text-decoration: none; transition: border-color 0.15s;
+.motorsport-stripe {
+  background: linear-gradient(to right,
+    var(--ultramarine) 0 25%, var(--plum) 25% 50%, var(--sand) 50% 75%, var(--vermillion) 75% 100%);
 }
-.post-list a:hover { border-color: var(--accent); }
-.post-list h2 { margin: 4px 0 6px; font-size: 22px; }
-.post-list p { margin: 0 0 12px; color: var(--muted); }
+.motorsport-stripe-v {
+  background: linear-gradient(to bottom,
+    var(--ultramarine) 0 25%, var(--plum) 25% 50%, var(--sand) 50% 75%, var(--vermillion) 75% 100%);
+}
+
+.label-tag {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text);
+  opacity: 0.65;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.label-tag::before {
+  content: "";
+  display: inline-block;
+  width: 1.25rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.5;
+}
+
+.stamp {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: var(--sand-ink);
+  background: var(--sand-soft);
+  border: 1px solid color-mix(in srgb, var(--sand) 50%, transparent);
+  border-radius: 0.125rem;
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--sand) 30%, transparent);
+}
+
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-box);
+}
+
+/* ---------- Header / footer ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.header-stripe { height: 3px; }
+.site-header header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 13px;
+  padding-bottom: 12px;
+}
+
+.brand { display: flex; align-items: center; gap: 12px; color: var(--text); text-decoration: none; min-width: 0; }
+.brand-mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid color-mix(in srgb, var(--text) 15%, transparent);
+  border-radius: 2px;
+  background: var(--surface);
+  transition: border-color 0.15s;
+}
+.brand-mark span { font-family: var(--font-display); font-size: 24px; line-height: 1; letter-spacing: -0.01em; }
+.brand-mark::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  width: 6px;
+  height: 6px;
+  background: var(--primary);
+}
+.brand-text { display: flex; flex-direction: column; line-height: 1; min-width: 0; }
+.brand-code {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--text) 70%, transparent);
+}
+.brand-name {
+  margin-top: 4px;
+  font-family: var(--font-display);
+  font-size: 21.6px;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  transition: color 0.15s;
+}
+.brand:hover .brand-mark { border-color: color-mix(in srgb, var(--primary) 40%, transparent); }
+.brand:hover .brand-name { color: var(--primary); }
+
+.nav-link {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--text);
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-field);
+}
+.nav-link:hover { border-color: var(--primary); color: var(--primary); }
+
+main.wrap { padding-top: 48px; padding-bottom: 72px; }
+
+.site-footer { padding: 0 0 48px; }
+.footer-stripe { height: 3px; width: 64px; margin-bottom: 16px; }
+
+/* ---------- Index ---------- */
+
+h1.font-display {
+  font-size: clamp(34px, 7vw, 52px);
+  line-height: 1.05;
+  text-transform: uppercase;
+  margin: 12px 0 16px;
+}
+
+.intro p { color: var(--muted); margin: 0; max-width: 34em; }
+
+.post-list { list-style: none; padding: 0; margin: 40px 0 0; display: grid; gap: 16px; }
+.post-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding: 22px 24px 22px 30px;
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.post-card:hover { border-color: color-mix(in srgb, var(--primary) 50%, transparent); }
+.card-rail { position: absolute; left: 0; top: 0; bottom: 0; width: 4px; }
+.post-card h2 { margin: 10px 0 6px; font-size: 22px; font-weight: 700; line-height: 1.3; }
+.post-card:hover h2 { color: var(--primary); }
+.post-card p { margin: 0 0 14px; color: var(--muted); }
 
 .versions { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
-.versions li {
-  font: 13px/1 var(--mono); padding: 6px 9px; border-radius: 999px;
-  background: var(--accent-soft); color: var(--text);
-}
-.versions span { color: var(--accent); margin-right: 6px; font-family: var(--font); font-weight: 600; }
 
-/* Post */
-.post header { margin-bottom: 28px; }
-.lede { font-size: 19px; color: var(--muted); margin: 0 0 16px; }
+/* ---------- Post ---------- */
 
-.toc {
-  border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface);
-  padding: 16px 20px; margin-bottom: 32px; font-size: 15px;
-}
-.toc ul { list-style: none; margin: 8px 0 0; padding: 0; }
-.toc li { margin: 3px 0; }
-.toc li.d3 { padding-left: 16px; }
+.post-header { margin-bottom: 32px; }
+.lede { font-size: 19px; color: var(--muted); margin: 0 0 18px; }
+
+.toc { padding: 18px 22px; margin-bottom: 40px; font-size: 15px; }
+.toc ul { list-style: none; margin: 12px 0 0; padding: 0; columns: 2 220px; column-gap: 32px; }
+.toc li { margin: 4px 0; break-inside: avoid; }
+.toc li.d2 { font-weight: 600; margin-top: 10px; }
+.toc li.d2:first-child { margin-top: 0; }
+.toc li.d3 { padding-left: 14px; }
 .toc a { text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
 
-.prose h2 { margin-top: 2.2em; padding-top: 0.6em; border-top: 1px solid var(--border); font-size: 26px; }
-.prose h3 { margin-top: 1.8em; font-size: 19px; }
-.prose h2, .prose h3 { scroll-margin-top: 16px; }
+/* Section headings: Anton display with a short Dakar stripe above. */
+.prose h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  margin: 2.4em 0 0.6em;
+}
+.prose h2::before {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 3px;
+  margin-bottom: 14px;
+  background: linear-gradient(to right,
+    var(--ultramarine) 0 25%, var(--plum) 25% 50%, var(--sand) 50% 75%, var(--vermillion) 75% 100%);
+}
+/* Sub-headings: service-manual section titles (.font-subdisplay). */
+.prose h3 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 2em 0 0.5em;
+}
+.prose h2, .prose h3 { scroll-margin-top: 88px; }
 .prose ul { padding-left: 1.2em; }
 .prose li { margin: 4px 0; }
+.prose li::marker { color: var(--primary); }
 .prose img {
-  display: block; margin: 1.4em auto; max-width: 100%; max-height: 640px; width: auto; height: auto;
-  border-radius: var(--radius); border: 1px solid var(--border);
+  display: block;
+  margin: 1.6em auto;
+  max-width: 100%;
+  max-height: 640px;
+  width: auto;
+  height: auto;
+  border-radius: var(--radius-box);
+  border: 1px solid var(--border);
+  background: var(--surface);
 }
-.prose code { font-family: var(--mono); font-size: 0.88em; background: var(--code-bg); padding: 0.1em 0.35em; border-radius: 5px; }
-.prose pre { padding: 14px 16px; border-radius: var(--radius); overflow-x: auto; }
-.prose pre code { background: none; padding: 0; }
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--code-bg);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
 .prose blockquote {
-  margin: 1.4em 0; padding: 12px 18px; border-left: 4px solid var(--accent);
-  background: var(--accent-soft); border-radius: 0 var(--radius) var(--radius) 0;
+  margin: 1.4em 0;
+  padding: 12px 18px;
+  border-left: 3px solid var(--sand);
+  background: color-mix(in srgb, var(--sand-soft) 15%, var(--surface));
+  border-radius: 0 var(--radius-field) var(--radius-field) 0;
 }
 .prose blockquote p { margin: 0.4em 0; }
+/* "All changes" links under each release. */
+.prose p > a:only-child {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.prose p > a:only-child::after { content: " →"; }
+
+@media (max-width: 520px) {
+  body { font-size: 16px; }
+  .brand-name { font-size: 18px; }
+  .prose h2 { font-size: 27px; }
+  .post-card { padding: 18px 18px 18px 24px; }
+}

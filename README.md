@@ -1,20 +1,19 @@
 # MotoManager Releases
 
-Release notes blog for the MotoManager web app (`MotoManager`), API
-(`MotoManagerApi`) and iOS app (`MotoManagerApp`). Static Astro site, deployed
+Release notes blog for the MotoManager web app (`MotoManager`) and iOS app
+(`MotoManagerApp`), written for the people who use them. Static Astro site, deployed
 to GitHub Pages by `.github/workflows/deploy.yml` on every push to `main`.
 
 ## Writing
 
 - **One post per month**: `src/content/posts/release-YYYYMM.md`, published at
   `/YYYY/MM/release-YYYYMM/`. Frontmatter: `title`, `description`, `date`,
-  optional `updated`, `versions: { web, api, ios }` (newest version covered),
+  optional `updated`, `versions: { web, ios }` (newest version covered),
   optional `draft: true`.
-- Structure: Upgrade notes → Highlights (hand-written) → Security → one `##`
-  section per component with a `### <version> – <Month day>` section per release.
-- The audience is the rider using the app: Highlights describe what changes
-  for them in the web and iOS apps — no endpoints, versions or API details
-  (those belong in the API section).
+- Structure: Highlights (hand-written) → Security → `## Web app` and
+  `## iOS app` with a `### <version> – <Month day>` section per release.
+- The audience is the rider using the app: describe what changes for them.
+  No API section, endpoints or server/admin notes.
 - **Screenshots** go in `src/assets/YYYY-MM/` and are referenced relatively
   from the post (`![alt](../../assets/2026-11/x.jpg)`). Resize them first,
   e.g. `sips -s format jpeg -s formatOptions 80 --resampleWidth 640 in.png --out out.jpg`
@@ -32,6 +31,13 @@ pnpm install
 pnpm dev        # http://localhost:4321
 pnpm build      # dist/
 ```
+
+## Design
+
+`src/styles/global.css` mirrors the web app (`MotoManager/app/app.css`): the
+Dakar palette (Ultramarine · Plum · Sand · Vermillion, always four bands),
+Slate/Navy surfaces, Anton / IBM Plex Sans / JetBrains Mono, `.label-tag`,
+`.stamp` and the MM nameplate. Keep them in sync when the web app changes.
 
 ## Hosting
 

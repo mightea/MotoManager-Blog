@@ -6,18 +6,20 @@ import { getPosts, postPath, withBase, formatDate } from "../lib/posts";
 const posts = await getPosts();
 ---
 
-<Base title="MotoManager Releases" description="What's new in MotoManager — web app, API and iOS app.">
+<Base title="MotoManager Releases" description="What's new in MotoManager — web app and iOS app.">
   <section class="intro">
-    <h1>What's new in MotoManager</h1>
-    <p>One post per month, covering the web app, the API and the iOS app. Patch releases are added to that month's post.</p>
+    <span class="label-tag">Release notes</span>
+    <h1 class="font-display">What's new in MotoManager</h1>
+    <p>One post per month for the web app and the iOS app. Smaller updates are added to that month's post.</p>
   </section>
 
   <ol class="post-list">
     {
       posts.map((post) => (
         <li>
-          <a href={withBase(postPath(post))}>
-            <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+          <a class="card post-card" href={withBase(postPath(post))}>
+            <span class="motorsport-stripe-v card-rail" aria-hidden="true" />
+            <time class="label-tag" datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
             <h2>{post.data.title}</h2>
             <p>{post.data.description}</p>
             <Versions versions={post.data.versions} />
