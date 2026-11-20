@@ -32,8 +32,8 @@ suggestions for which of your motorcycles each part fits.
 
 ### BMW part numbers
 
-Link a part to its BMW part number and MotoManager fills in what is missing from
-BMWBike. Works in the web app and the iOS app.
+Link a part to its BMW part number and MotoManager fills in the
+missing details for you. Works in the web app and the iOS app.
 
 ### A calmer iPhone app
 
@@ -46,7 +46,7 @@ iPhone app stays in portrait. Layouts adapt better across iPhone and iPad.
 ### 2026.9.3 – September 28
 
 - Import invoices from raw scans and photos.
-- Link parts to a BMW part number and fill missing data from BMWBike.
+- Link parts to a BMW part number and have the missing details filled in.
 - Fix: the oil type on maintenance entries is saved.
 
 [All changes](https://github.com/mightea/MotoManager/compare/2026.9.2...2026.9.3)
@@ -75,7 +75,7 @@ iPhone app stays in portrait. Layouts adapt better across iPhone and iPad.
 
 ### 0.13.0 – September 28
 
-- Link parts to a BMW part number and fill missing data from BMWBike.
+- Link parts to a BMW part number and have the missing details filled in.
 - The workshop tab is one overview with readable torque specs.
 - All forms use the same sheet, and every sheet opens at full height.
 - The iPhone app stays in portrait.
