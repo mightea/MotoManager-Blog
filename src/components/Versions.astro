@@ -1,0 +1,15 @@
+---
+interface Props {
+  versions: { web?: string; api?: string; ios?: string };
+}
+const { versions } = Astro.props;
+const items = [
+  ["Web", versions.web],
+  ["API", versions.api],
+  ["iOS", versions.ios],
+].filter(([, v]) => v);
+---
+
+<ul class="versions">
+  {items.map(([label, v]) => <li><span>{label}</span>{v}</li>)}
+</ul>

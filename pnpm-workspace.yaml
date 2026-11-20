@@ -1,0 +1,15 @@
+packages:
+  - '.'
+
+# Same pin as the web app: esbuild < 0.28.1 is flagged by Dependabot.
+overrides:
+  'esbuild@<0.28.1': '^0.28.1'
+
+# pnpm 11 blocks install scripts by default. esbuild needs its binary;
+# sharp is only used for image optimisation, which this site doesn't use.
+allowBuilds:
+  esbuild: true
+  sharp: false
+
+onlyBuiltDependencies:
+  - esbuild

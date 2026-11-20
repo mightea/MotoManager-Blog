@@ -1,0 +1,47 @@
+---
+import "../styles/global.css";
+import { withBase } from "../lib/posts";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const fullTitle = title === "MotoManager Releases" ? title : `${title} · MotoManager Releases`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href={withBase("favicon.svg")} />
+    <link rel="alternate" type="application/rss+xml" title="MotoManager Releases" href={withBase("rss.xml")} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href={withBase("")}>
+          <img src={withBase("favicon.svg")} alt="" width="28" height="28" />
+          <span>MotoManager <em>Releases</em></span>
+        </a>
+        <nav>
+          <a href={withBase("rss.xml")}>RSS</a>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="wrap">
+        Release notes for the MotoManager web app, API and iOS app.
+      </div>
+    </footer>
+  </body>
+</html>

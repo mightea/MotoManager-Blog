@@ -1,0 +1,49 @@
+---
+import { render } from "astro:content";
+import Base from "../../../layouts/Base.astro";
+import Versions from "../../../components/Versions.astro";
+import { getPosts, postPath, formatDate, type Post } from "../../../lib/posts";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => {
+    const [year, month, slug] = postPath(post).split("/");
+    return { params: { year, month, slug }, props: { post } };
+  });
+}
+
+const { post } = Astro.props as { post: Post };
+const { Content, headings } = await render(post);
+const toc = headings.filter((h) => h.depth <= 3);
+---
+
+<Base title={post.data.title} description={post.data.description}>
+  <article class="post">
+    <header>
+      <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+      {post.data.updated && <span class="updated"> · updated {formatDate(post.data.updated)}</span>}
+      <h1>{post.data.title}</h1>
+      <p class="lede">{post.data.description}</p>
+      <Versions versions={post.data.versions} />
+    </header>
+
+    {
+      toc.length > 0 && (
+        <nav class="toc" aria-label="Contents">
+          <strong>Contents</strong>
+          <ul>
+            {toc.map((h) => (
+              <li class={`d${h.depth}`}>
+                <a href={`#${h.slug}`}>{h.text}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )
+    }
+
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Base>
